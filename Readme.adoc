@@ -1,0 +1,37 @@
+=== dockerの準備（ローカルにDBを立ち上げる）
+. dockerのインストール
+.. (利用しているOSに従いインストール)
+https://docs.docker.jp/machine/install-machine.html
+. docker-composeのインストール
+.. (利用しているOSに従いインストール)
+https://docs.docker.jp/compose/install.html
+.. (注)
+
+=== 起動、停止
+
+[source, bash]
+----
+$ docker-compose up -d # データベースを起動
+$ docker-compose down  # データベースを停止
+----
+
+readme-postgresql +
+psql -h localhost -U postgres +
+初期データセットアップは +
+./postgres/sql配下にsqlファイルを配置 +
+|-./postgres +
+   |-sql +
+     |-1_createdb.sql +
+     |-2_createtable.sh
+
+[source, bash]
+----
+#!/bin/bash
+set -e
+
+#psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+    CREATE USER admin;
+    CREATE DATABASE admin;
+    GRANT ALL PRIVILEGES ON DATABASE docker TO admin;
+EOSQL
+----
