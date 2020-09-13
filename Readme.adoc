@@ -15,23 +15,12 @@ $ docker-compose up -d # データベースを起動
 $ docker-compose down  # データベースを停止
 ----
 
-readme-postgresql +
-psql -h localhost -U postgres +
+
 初期データセットアップは +
 ./postgres/sql配下にsqlファイルを配置 +
-|-./postgres +
-   |-sql +
-     |-1_createdb.sql +
-     |-2_createtable.sh
+└./postgres +
+　└sql +
+ └1_createdb.sql +
+ └2_createtable.sh
 
-[source, bash]
-----
-#!/bin/bash
-set -e
 
-#psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
-    CREATE USER admin;
-    CREATE DATABASE admin;
-    GRANT ALL PRIVILEGES ON DATABASE docker TO admin;
-EOSQL
-----
