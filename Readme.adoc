@@ -20,7 +20,7 @@ $ docker-compose down  # データベースを停止
 ./postgres/sql配下にsqlファイルを配置 +
 └./postgres +
 　└sql +
- └1_createdb.sql +
- └2_createtable.sh
+ 　　└1_createdb.sql +
+ 　　└2_createtable.sh
 
 
